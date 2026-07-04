@@ -1,0 +1,180 @@
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500&f[]=satoshi@700,500,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import "tailwindcss";
+
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.08);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 4px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.15) 20%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.15) 80%, rgba(255, 255, 255, 0.45) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@theme {
+  --font-sans: 'Satoshi', sans-serif;
+  --font-clash: 'Clash Display', sans-serif;
+  --font-podium: "FSP DEMO - PODIUM Sharp 4.11", sans-serif;
+  --font-inter: "Inter", sans-serif;
+}
+
+@layer utilities {
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.8s ease-out forwards;
+  }
+  .animate-fade-up-delay-1 {
+    animation: fade-up 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+  }
+  .animate-fade-up-delay-2 {
+    animation: fade-up 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+  }
+  .animate-fade-up-delay-3 {
+    animation: fade-up 0.8s ease-out 0.6s forwards;
+    opacity: 0;
+  }
+  .animate-fade-up-delay-4 {
+    animation: fade-up 0.8s ease-out 0.8s forwards;
+    opacity: 0;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #050505;
+  color: #e5e5e5;
+  font-family: 'Satoshi', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Swiss Minimalist Custom Classes */
+
+/* Typography */
+.font-clash {
+  font-family: 'Clash Display', sans-serif;
+}
+
+.font-satoshi {
+  font-family: 'Satoshi', sans-serif;
+}
+
+/* Echo Stack - The Typographic Layering Effect */
+.echo-container {
+  position: relative;
+  display: inline-block;
+}
+
+.echo-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Base Utility Classes */
+.c-space {
+  @apply sm:px-10 px-6 lg:px-12 max-w-7xl mx-auto;
+}
+
+.section-spacing {
+  @apply min-h-screen py-24 md:py-32;
+}
+
+/* Layout specific */
+.masonry-item {
+  position: relative;
+  overflow: hidden;
+  background-color: #1a1a1a;
+}
+
+.masonry-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%);
+  transition: transform 700ms cubic-bezier(0.77, 0, 0.175, 1), filter 700ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.masonry-item:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+/* Custom Nav Transition */
+.nav-link {
+  transition: color 120ms ease-in-out;
+}
+.nav-link:hover {
+  color: #b6b5b5;
+}
+
+/* Hide Video Controls Overlay in Safari/iOS */
+video::-webkit-media-controls,
+video::-webkit-media-controls-enclosure,
+video::-webkit-media-controls-panel,
+video::-webkit-media-controls-start-playback-button,
+video::-webkit-media-controls-overlay-play-button,
+video::-webkit-media-controls-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+/* Bespoke Service Cards */
+.bespoke-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 300ms ease;
+  background-color: transparent;
+}
+.bespoke-card:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.bespoke-card .icon-container {
+  transition: transform 300ms ease;
+}
+.bespoke-card:hover .icon-container {
+  transform: rotate(12deg);
+}
+
+/* Layout Utilities */
+.hairline-divider {
+  width: 1px;
+  height: 80px;
+  background-color: rgba(255, 255, 255, 0.15);
+  margin: 0 auto;
+}
